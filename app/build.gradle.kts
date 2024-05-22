@@ -73,6 +73,10 @@ dependencies {
 
     implementation("androidx.compose.ui:ui-graphics")
 
+    //3rd party libs
+    implementation(libs.coil.kt.compose)
+    implementation(libs.accompanist.adaptive)
+
 
     //Dependency Injection
     implementation(libs.androidx.hilt.navigation.compose)
