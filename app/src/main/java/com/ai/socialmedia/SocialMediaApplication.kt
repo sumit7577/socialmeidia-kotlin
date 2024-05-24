@@ -11,9 +11,6 @@ import javax.inject.Inject
  * Application which sets up our dependency [Graph] with a context.
  */
 @HiltAndroidApp
-class SocialMediaApplication : Application(), ImageLoaderFactory {
+class SocialMediaApplication : Application() {
 
-    @Inject lateinit var imageLoader: ImageLoader
-
-    override fun newImageLoader(): ImageLoader = imageLoader
 }

@@ -11,7 +11,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.window.layout.DisplayFeature
 import com.ai.socialmedia.ui.home.MainScreen
-import com.example.socialmedia.R
+import com.ai.socialmedia.R
+import com.ai.socialmedia.ui.auth.Auth
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
@@ -26,9 +27,7 @@ fun SocialMediaApp(
             startDestination = Screen.Home.route
         ) {
             composable(Screen.Home.route) {
-                MainScreen(
-                    windowSizeClass = adaptiveInfo.windowSizeClass,
-                )
+                Auth()
             }
         }
     } else {

@@ -91,7 +91,7 @@ fun MainScreen(
 ) {
     Surface {
         Column {
-
+            Text("I am home")
         }
     }
 }

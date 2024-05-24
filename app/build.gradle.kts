@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.socialmedia"
+    namespace = "com.ai.socialmedia"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.example.socialmedia"
+        applicationId = "com.ai.socialmedia"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
@@ -76,6 +76,9 @@ dependencies {
     //3rd party libs
     implementation(libs.coil.kt.compose)
     implementation(libs.accompanist.adaptive)
+    implementation("com.github.ozcanalasalvar.picker:datepicker:2.0.7")
+    implementation("com.github.ozcanalasalvar.picker:wheelview:2.0.7")
+
 
 
     //Dependency Injection

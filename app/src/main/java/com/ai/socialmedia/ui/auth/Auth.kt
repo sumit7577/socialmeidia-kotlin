@@ -23,8 +23,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ai.socialmedia.components.RoundedButton
-import com.example.socialmedia.R
+import com.ai.socialmedia.R
 import com.ai.socialmedia.ui.theme.*
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material3.Icon
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Chair
 
 
 @Preview(showBackground = true)
@@ -34,7 +40,9 @@ fun Auth(modifier:Modifier = Modifier) {
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        Column(modifier= Modifier.fillMaxSize().padding(24.dp),
+        Column(modifier= Modifier
+            .fillMaxSize()
+            .padding(24.dp),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally) {
             Column(
@@ -43,10 +51,10 @@ fun Auth(modifier:Modifier = Modifier) {
             ) {
 
                 Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground), // Replace with your logo resource ID
+                    painter = painterResource(id = R.drawable.logo), // Replace with your logo resource ID
                     contentDescription = "Logo",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(64.dp)
+                    modifier = Modifier.size(50.dp)
                 )
             }
 
@@ -114,7 +122,5 @@ fun Auth(modifier:Modifier = Modifier) {
             }
 
         }
-
-
     }
 }
