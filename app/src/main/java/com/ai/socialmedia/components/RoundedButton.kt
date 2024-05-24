@@ -22,8 +22,7 @@ fun RoundedButton(
     textColor: Color
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
             .padding(8.dp)
             .height(50.dp)
             .background(
