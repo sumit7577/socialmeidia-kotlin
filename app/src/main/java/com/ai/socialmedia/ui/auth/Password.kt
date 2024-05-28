@@ -3,14 +3,18 @@ package com.ai.socialmedia.ui.auth
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -37,14 +41,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ai.socialmedia.components.AuthHeader
+import com.ai.socialmedia.ui.AuthScreen
 import com.ai.socialmedia.ui.theme.Primary
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
 @Composable
-fun Password(modifier: Modifier = Modifier){
+fun Password(modifier: Modifier = Modifier,navController: NavController){
     var text by rememberSaveable { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
     Surface(modifier=modifier.fillMaxSize(),
@@ -66,7 +72,7 @@ fun Password(modifier: Modifier = Modifier){
                             }
                         },
                         fontSize = 24.sp,
-                        fontWeight = FontWeight.SemiBold,
+                        fontWeight = FontWeight.Medium,
                         color = Color.Black,
                     )
                     Text(
@@ -135,9 +141,34 @@ fun Password(modifier: Modifier = Modifier){
 
             }
 
+            Column(modifier=modifier.fillMaxHeight(),
+                verticalArrangement = Arrangement.Bottom) {
+
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.SetProfilePicture) },
+                    colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
+                    shape = RoundedCornerShape(18.dp),
+                    modifier= modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                ) {
+                    Text(text="Sign up",
+                        fontSize = 16.sp,
+                        color= Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
         }
 
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SetPasswordPreview() {
+    val navController = rememberNavController()
+    Password(navController = navController)
 }
 
 

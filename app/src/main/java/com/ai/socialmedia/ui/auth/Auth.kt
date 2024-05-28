@@ -1,11 +1,7 @@
 package com.ai.socialmedia.ui.auth
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -22,20 +18,14 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ai.socialmedia.components.RoundedButton
+import androidx.navigation.NavController
 import com.ai.socialmedia.R
 import com.ai.socialmedia.ui.theme.*
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material3.Icon
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Chair
+import androidx.navigation.compose.rememberNavController
+import com.ai.socialmedia.ui.AuthScreen
 
-
-@Preview(showBackground = true)
 @Composable
-fun Auth(modifier:Modifier = Modifier) {
+fun Auth(modifier:Modifier = Modifier,navController:NavController) {
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -87,10 +77,34 @@ fun Auth(modifier:Modifier = Modifier) {
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
 
-                RoundedButton(text = "Continue With Google", backgroundColor = Color.White, textColor = Color.Black)
+                OutlinedButton(onClick = { navController.navigate(AuthScreen.Signup) },
+                    colors = ButtonColors(Color.White, Color.Black, Color.White, Color.Black),
+                    shape = RoundedCornerShape(18.dp),
+                    modifier= modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                ) {
+                    Text(text="Continue with Google",
+                        fontSize = 16.sp,
+                        color= Color.Black,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
                 Spacer(modifier = Modifier.height(12.dp))
-                RoundedButton(text = "Create New Account", backgroundColor = Color.Black, textColor = Color.White)
-                Spacer(modifier = Modifier.height(16.dp))
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.Signup) },
+                    colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
+                    shape = RoundedCornerShape(18.dp),
+                    modifier= modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                ) {
+                    Text(text="Create New Account",
+                        fontSize = 16.sp,
+                        color= Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = buildAnnotatedString {
                         append("By signing up, you agree to our")
@@ -123,4 +137,12 @@ fun Auth(modifier:Modifier = Modifier) {
 
         }
     }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun AuthPreview() {
+    val navController = rememberNavController()
+    Auth(navController = navController)
 }

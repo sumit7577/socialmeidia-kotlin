@@ -14,8 +14,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,9 +46,12 @@ import com.ai.socialmedia.ui.theme.Primary
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.ai.socialmedia.R
 import com.ai.socialmedia.components.RoundedButton
+import com.ai.socialmedia.ui.AuthScreen
 
 fun Modifier.dashedBorder(
     color: Color,
@@ -75,9 +82,8 @@ fun Modifier.dashedBorder(
     }
 )
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
 @Composable
-fun ProfilePicture(modifier: Modifier = Modifier){
+fun ProfilePicture(modifier: Modifier = Modifier,navController: NavController){
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
@@ -178,10 +184,33 @@ fun ProfilePicture(modifier: Modifier = Modifier){
 
             Column(modifier = modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Bottom) {
-                Row(horizontalArrangement = Arrangement.SpaceBetween,
+                Row(horizontalArrangement = Arrangement.spacedBy(20.dp),
                     modifier = modifier.fillMaxWidth()) {
-                    RoundedButton(text = "Skip Now", backgroundColor = Color.Unspecified, textColor = Color.Black)
-                    RoundedButton(text = "Sign Up", backgroundColor = Color.Black, textColor = Color.White)
+
+                    OutlinedButton(onClick = { navController.navigate(AuthScreen.NotificationSetting) },
+                        colors = ButtonColors(Color.White, Color.Black, Color.Black, Color.White),
+                        shape = RoundedCornerShape(18.dp),
+                        modifier= modifier
+                            .height(50.dp).weight(1f,fill=true)
+                    ) {
+                        Text(text="Skip Now",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    ElevatedButton(onClick = { navController.navigate(AuthScreen.NotificationSetting) },
+                        colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
+                        shape = RoundedCornerShape(18.dp),
+                        modifier= modifier
+                            .height(50.dp).weight(1f,fill=true)
+                    ) {
+                        Text(text="Sign up",
+                            fontSize = 16.sp,
+                            color= Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
 
             }
@@ -189,4 +218,11 @@ fun ProfilePicture(modifier: Modifier = Modifier){
         }
 
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SetProfilePicturePreview() {
+    val navController = rememberNavController()
+    ProfilePicture(navController = navController)
 }

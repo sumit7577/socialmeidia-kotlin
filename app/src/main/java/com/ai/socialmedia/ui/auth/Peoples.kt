@@ -5,6 +5,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -26,9 +29,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.ai.socialmedia.R
 import com.ai.socialmedia.components.RoundedButton
+import com.ai.socialmedia.ui.AuthScreen
 import com.ai.socialmedia.ui.theme.Primary
 
 @Composable
@@ -55,9 +61,8 @@ fun CirclesWithMargin(
         content()
     }
 }
-@Preview(showBackground = true)
 @Composable
-fun Peoples(modifier:Modifier = Modifier){
+fun Peoples(modifier:Modifier = Modifier,navController: NavController){
     Surface(
         modifier=modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -172,9 +177,26 @@ fun Peoples(modifier:Modifier = Modifier){
             }
 
             Column(modifier=modifier.fillMaxWidth()) {
-                RoundedButton(text = "Next", backgroundColor = Color.Black, textColor = Color.White)
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.FollowSuggestions) },
+                    colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
+                    shape = RoundedCornerShape(18.dp),
+                    modifier= modifier
+                        .height(50.dp).fillMaxWidth()
+                ) {
+                    Text(text="Next",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
         }
 
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SetPeoplePreview() {
+    val navController = rememberNavController()
+    Peoples(navController = navController)
 }

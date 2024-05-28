@@ -2,10 +2,14 @@ package com.ai.socialmedia.ui.auth
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -27,14 +31,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ai.socialmedia.components.AuthHeader
+import com.ai.socialmedia.ui.AuthScreen
 import com.ai.socialmedia.ui.theme.Primary
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
 @Composable
-fun Otp(modifier: Modifier = Modifier){
+fun Otp(modifier: Modifier = Modifier,navController: NavController){
     var text by rememberSaveable { mutableStateOf("") }
     Surface(modifier=modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background){
@@ -46,7 +52,7 @@ fun Otp(modifier: Modifier = Modifier){
             Column(modifier = modifier.fillMaxWidth(),
                 verticalArrangement =  Arrangement.spacedBy(30.dp)) {
                 AuthHeader()
-                Column {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(
                         text = buildAnnotatedString {
                             append("We sent you a")
@@ -89,7 +95,9 @@ fun Otp(modifier: Modifier = Modifier){
                         fontWeight = FontWeight.Normal,
                         color = Color.Gray,
                         textAlign = TextAlign.Right,
-                        modifier = modifier.fillMaxWidth().padding(10.dp,0.dp)
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .padding(10.dp, 0.dp)
                     )
                 }
                 Text(
@@ -101,9 +109,33 @@ fun Otp(modifier: Modifier = Modifier){
 
             }
 
+            Column(modifier=modifier.fillMaxHeight(),
+                verticalArrangement = Arrangement.Bottom) {
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.SetPassword) },
+                    colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
+                    shape = RoundedCornerShape(18.dp),
+                    modifier= modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                ) {
+                    Text(text="Next",
+                        fontSize = 16.sp,
+                        color= Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
         }
 
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OtpPreview() {
+    val navController = rememberNavController()
+    Otp(navController = navController)
 }
 
 

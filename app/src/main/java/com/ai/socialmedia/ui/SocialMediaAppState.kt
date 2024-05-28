@@ -16,27 +16,41 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.serialization.Serializable
 
-sealed class Screen(val route: String) {
-    object Home : Screen("home")
-    object Player : Screen("player/{$ARG_EPISODE_URI}") {
-        fun createRoute(episodeUri: String) = "player/$episodeUri"
-    }
+sealed class AuthScreen() {
+    @Serializable
+    object Auth
 
-    object PodcastDetails : Screen("podcast/{$ARG_PODCAST_URI}") {
+    @Serializable
+    object Signup
 
-        val PODCAST_URI = "podcastUri"
-        fun createRoute(podcastUri: String) = "podcast/$podcastUri"
-    }
+    @Serializable
+    object OtpVerify
+    @Serializable
+    object  SetPassword
 
-    companion object {
-        val ARG_PODCAST_URI = "podcastUri"
-        val ARG_EPISODE_URI = "episodeUri"
-    }
+    @Serializable
+    object SetProfilePicture
+
+    @Serializable
+    object SetUsername
+
+    @Serializable
+    object NotificationSetting
+
+    @Serializable
+    object Peoples
+
+    @Serializable
+    object FollowSuggestions
+
+    @Serializable
+    object SetLanguage
 }
 
 @Composable
-fun rememberJetcasterAppState(
+fun rememberSocialMediaAppState(
     navController: NavHostController = rememberNavController(),
     context: Context = LocalContext.current
 ) = remember(navController, context) {
@@ -56,21 +70,6 @@ class SocialMediaAppState(
         isOnline = checkIfOnline()
     }
 
-    /*fun navigateToPlayer(episodeUri: String, from: NavBackStackEntry) {
-        // In order to discard duplicated navigation events, we check the Lifecycle
-        if (from.lifecycleIsResumed()) {
-            val encodedUri = Uri.encode(episodeUri)
-            navController.navigate(Screen.Player.createRoute(encodedUri))
-        }
-    }
-
-    fun navigateToPodcastDetails(podcastUri: String, from: NavBackStackEntry) {
-        if (from.lifecycleIsResumed()) {
-            val encodedUri = Uri.encode(podcastUri)
-            navController.navigate(Screen.PodcastDetails.createRoute(encodedUri))
-        }
-    }*/
-
     fun navigateBack() {
         navController.popBackStack()
     }
@@ -89,9 +88,3 @@ class SocialMediaAppState(
     }
 
 }
-
-/**
- * If the lifecycle is not resumed it means this NavBackStackEntry already processed a nav event.
- *
- * This is used to de-duplicate navigation events.
- */

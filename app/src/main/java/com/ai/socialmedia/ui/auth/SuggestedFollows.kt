@@ -36,9 +36,12 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ai.socialmedia.components.RoundedButton
 import com.ai.socialmedia.ui.theme.Primary
 import com.ai.socialmedia.R
+import com.ai.socialmedia.ui.AuthScreen
 
 
 @Composable
@@ -80,9 +83,8 @@ fun ListItem(modifier:Modifier=Modifier,item: String) {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun SuggestedFollows(modifier:Modifier = Modifier) {
+fun SuggestedFollows(modifier:Modifier = Modifier,navController: NavController) {
     val itemsList = List(100) { "Item #$it" }
     val configuration = LocalConfiguration.current
     val screenHeight = configuration.screenHeightDp.dp
@@ -131,11 +133,28 @@ fun SuggestedFollows(modifier:Modifier = Modifier) {
             }
 
             Column(modifier=modifier.fillMaxWidth()) {
-                RoundedButton(text = "Next", backgroundColor = Color.Black, textColor = Color.White)
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.SetLanguage) },
+                    colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
+                    shape = RoundedCornerShape(18.dp),
+                    modifier= modifier
+                        .height(50.dp).fillMaxWidth()
+                ) {
+                    Text(text="Next",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
 
             }
 
         }
 
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SetSuggestedPeoplesPreview() {
+    val navController = rememberNavController()
+    SuggestedFollows(navController = navController)
 }

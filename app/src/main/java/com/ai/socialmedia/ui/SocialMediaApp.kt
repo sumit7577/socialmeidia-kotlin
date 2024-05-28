@@ -10,25 +10,58 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.window.layout.DisplayFeature
-import com.ai.socialmedia.ui.home.MainScreen
 import com.ai.socialmedia.R
 import com.ai.socialmedia.ui.auth.Auth
+import com.ai.socialmedia.ui.auth.LanguageSelect
+import com.ai.socialmedia.ui.auth.Notifications
+import com.ai.socialmedia.ui.auth.Otp
+import com.ai.socialmedia.ui.auth.Password
+import com.ai.socialmedia.ui.auth.Peoples
+import com.ai.socialmedia.ui.auth.ProfilePicture
+import com.ai.socialmedia.ui.auth.SignUp
+import com.ai.socialmedia.ui.auth.SuggestedFollows
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun SocialMediaApp(
     displayFeatures: List<DisplayFeature>,
-    appState: SocialMediaAppState = rememberJetcasterAppState()
+    appState: SocialMediaAppState = rememberSocialMediaAppState()
 ) {
     val adaptiveInfo = currentWindowAdaptiveInfo()
     if (appState.isOnline) {
+        val authNavController = appState.navController
         NavHost(
-            navController = appState.navController,
-            startDestination = Screen.Home.route
+            navController = authNavController,
+            startDestination = AuthScreen.Auth
         ) {
-            composable(Screen.Home.route) {
-                Auth()
+            composable<AuthScreen.Auth> {
+                Auth(navController = authNavController)
             }
+            composable<AuthScreen.Signup> {
+                SignUp(navController = authNavController)
+            }
+            composable<AuthScreen.OtpVerify> {
+                Otp(navController = authNavController)
+            }
+            composable<AuthScreen.SetPassword> {
+                Password(navController = authNavController)
+            }
+            composable<AuthScreen.SetProfilePicture> {
+                ProfilePicture(navController = authNavController)
+            }
+            composable<AuthScreen.NotificationSetting> {
+                Notifications(navController = authNavController)
+            }
+            composable<AuthScreen.Peoples> {
+                Peoples(navController = authNavController)
+            }
+            composable<AuthScreen.FollowSuggestions> {
+                SuggestedFollows(navController = authNavController)
+            }
+            composable<AuthScreen.SetLanguage> {
+                LanguageSelect(navController = authNavController)
+            }
+
         }
     } else {
         OfflineDialog { appState.refreshOnline() }

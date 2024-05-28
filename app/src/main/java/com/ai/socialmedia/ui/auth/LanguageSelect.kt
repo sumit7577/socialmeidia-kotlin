@@ -48,6 +48,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ai.socialmedia.R
 import com.ai.socialmedia.ui.theme.Primary
 
@@ -78,9 +80,8 @@ fun ListLanguage(modifier:Modifier=Modifier,language: String, isSelected: Boolea
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
 @Composable
-fun LanguageSelect(modifier:Modifier=Modifier) {
+fun LanguageSelect(modifier:Modifier=Modifier,navController: NavController) {
     var text by rememberSaveable { mutableStateOf("") }
     val languages = listOf("Gujarati - ગુજરાતી", "Hindi - हिंदी", "Tamil - ತಮಿಳು", "Marathi - मराठी","Bangali - বাংলায়")
     var selectedLanguage by remember { mutableStateOf(languages[0]) }
@@ -163,4 +164,11 @@ fun LanguageSelect(modifier:Modifier=Modifier) {
 
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SetLanguageSelect() {
+    val navController = rememberNavController()
+    LanguageSelect(navController = navController)
 }
