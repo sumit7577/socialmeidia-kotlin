@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -71,9 +70,6 @@ dependencies {
     implementation(libs.androidx.compose.material3.adaptive)
     implementation(libs.androidx.compose.material3.adaptive.layout)
     implementation(libs.androidx.compose.material3.adaptive.navigation)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.navigation.kotlinx.serialization.json)
-
     implementation("androidx.compose.ui:ui-graphics")
 
     //3rd party libs

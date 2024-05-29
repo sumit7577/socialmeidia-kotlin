@@ -187,7 +187,7 @@ fun ProfilePicture(modifier: Modifier = Modifier,navController: NavController){
                 Row(horizontalArrangement = Arrangement.spacedBy(20.dp),
                     modifier = modifier.fillMaxWidth()) {
 
-                    OutlinedButton(onClick = { navController.navigate(AuthScreen.NotificationSetting) },
+                    OutlinedButton(onClick = { navController.navigate(AuthScreen.NotificationSetting.route) },
                         colors = ButtonColors(Color.White, Color.Black, Color.Black, Color.White),
                         shape = RoundedCornerShape(18.dp),
                         modifier= modifier
@@ -199,7 +199,7 @@ fun ProfilePicture(modifier: Modifier = Modifier,navController: NavController){
                         )
                     }
 
-                    ElevatedButton(onClick = { navController.navigate(AuthScreen.NotificationSetting) },
+                    ElevatedButton(onClick = { navController.navigate(AuthScreen.NotificationSetting.route) },
                         colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
                         shape = RoundedCornerShape(18.dp),
                         modifier= modifier

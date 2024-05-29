@@ -12,41 +12,36 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat.getSystemService
-import androidx.lifecycle.Lifecycle
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import kotlinx.serialization.Serializable
+sealed class AuthScreen(val route: String) {
+    object Home : AuthScreen("home")
+    object Signup : AuthScreen("signup")
 
-sealed class AuthScreen() {
-    @Serializable
-    object Auth
+    object PodcastDetails : AuthScreen("podcast/{$ARG_PODCAST_URI}") {
 
-    @Serializable
-    object Signup
+        val PODCAST_URI = "podcastUri"
+        fun createRoute(podcastUri: String) = "podcast/$podcastUri"
+    }
 
-    @Serializable
-    object OtpVerify
-    @Serializable
-    object  SetPassword
 
-    @Serializable
-    object SetProfilePicture
+    object OtpVerify : AuthScreen("otpVerify")
 
-    @Serializable
-    object SetUsername
+    object SetPassword : AuthScreen("setPassword")
 
-    @Serializable
-    object NotificationSetting
+    object SetProfilePicture : AuthScreen("setProfilePicture")
 
-    @Serializable
-    object Peoples
+    object NotificationSetting : AuthScreen("notificationSetting")
 
-    @Serializable
-    object FollowSuggestions
+    object Peoples : AuthScreen("peoples")
 
-    @Serializable
-    object SetLanguage
+    object FollowSuggestions : AuthScreen("followSuggestions")
+
+    object SetLanguage : AuthScreen("setLanguage")
+    companion object {
+        val ARG_PODCAST_URI = "podcastUri"
+        val ARG_EPISODE_URI = "episodeUri"
+    }
 }
 
 @Composable

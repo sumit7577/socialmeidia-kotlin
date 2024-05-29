@@ -1,6 +1,6 @@
 package com.ai.socialmedia.ui.auth
 
-import androidx.compose.foundation.BorderStroke
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -77,7 +77,7 @@ fun Auth(modifier:Modifier = Modifier,navController:NavController) {
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
 
-                OutlinedButton(onClick = { navController.navigate(AuthScreen.Signup) },
+                OutlinedButton(onClick = { navController.navigate(AuthScreen.Signup.route) },
                     colors = ButtonColors(Color.White, Color.Black, Color.White, Color.Black),
                     shape = RoundedCornerShape(18.dp),
                     modifier= modifier
@@ -91,7 +91,7 @@ fun Auth(modifier:Modifier = Modifier,navController:NavController) {
                     )
                 }
                 Spacer(modifier = Modifier.height(12.dp))
-                ElevatedButton(onClick = { navController.navigate(AuthScreen.Signup) },
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.Signup.route) },
                     colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
                     shape = RoundedCornerShape(18.dp),
                     modifier= modifier

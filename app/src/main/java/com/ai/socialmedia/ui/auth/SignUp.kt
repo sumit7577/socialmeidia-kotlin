@@ -130,7 +130,7 @@ fun SignUp(modifier:Modifier = Modifier,navController: NavController){
                         Log.d("SelectedDate", "$day / $month / $year")
                     })
                 }
-                ElevatedButton(onClick = { navController.navigate(AuthScreen.OtpVerify) },
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.OtpVerify.route) },
                     colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
                     shape = RoundedCornerShape(18.dp),
                     modifier= modifier

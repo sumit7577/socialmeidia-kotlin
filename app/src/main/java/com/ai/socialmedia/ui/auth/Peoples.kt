@@ -177,7 +177,7 @@ fun Peoples(modifier:Modifier = Modifier,navController: NavController){
             }
 
             Column(modifier=modifier.fillMaxWidth()) {
-                ElevatedButton(onClick = { navController.navigate(AuthScreen.FollowSuggestions) },
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.FollowSuggestions.route) },
                     colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
                     shape = RoundedCornerShape(18.dp),
                     modifier= modifier

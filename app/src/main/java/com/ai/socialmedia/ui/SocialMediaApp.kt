@@ -32,33 +32,35 @@ fun SocialMediaApp(
         val authNavController = appState.navController
         NavHost(
             navController = authNavController,
-            startDestination = AuthScreen.Auth
+            startDestination = AuthScreen.Home.route
         ) {
-            composable<AuthScreen.Auth> {
-                Auth(navController = authNavController)
+            composable(AuthScreen.Home.route) {
+                Auth(
+                    navController = authNavController
+                )
             }
-            composable<AuthScreen.Signup> {
+            composable(AuthScreen.Signup.route){
                 SignUp(navController = authNavController)
             }
-            composable<AuthScreen.OtpVerify> {
+            composable(AuthScreen.OtpVerify.route) {
                 Otp(navController = authNavController)
             }
-            composable<AuthScreen.SetPassword> {
+            composable(AuthScreen.SetPassword.route) {
                 Password(navController = authNavController)
             }
-            composable<AuthScreen.SetProfilePicture> {
+            composable(AuthScreen.SetProfilePicture.route) {
                 ProfilePicture(navController = authNavController)
             }
-            composable<AuthScreen.NotificationSetting> {
+            composable(AuthScreen.NotificationSetting.route) {
                 Notifications(navController = authNavController)
             }
-            composable<AuthScreen.Peoples> {
+            composable(AuthScreen.Peoples.route) {
                 Peoples(navController = authNavController)
             }
-            composable<AuthScreen.FollowSuggestions> {
+            composable(AuthScreen.Peoples.route) {
                 SuggestedFollows(navController = authNavController)
             }
-            composable<AuthScreen.SetLanguage> {
+            composable(AuthScreen.SetLanguage.route) {
                 LanguageSelect(navController = authNavController)
             }
 

@@ -63,7 +63,7 @@ fun Notifications(modifier: Modifier = Modifier,navController: NavController){
             }
 
             Column(verticalArrangement = Arrangement.spacedBy(15.dp)) {
-                ElevatedButton(onClick = { navController.navigate(AuthScreen.Peoples) },
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.Peoples.route) },
                     colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
                     shape = RoundedCornerShape(18.dp),
                     modifier= modifier
@@ -74,7 +74,7 @@ fun Notifications(modifier: Modifier = Modifier,navController: NavController){
                         fontWeight = FontWeight.Bold
                     )
                 }
-                OutlinedButton(onClick = { navController.navigate(AuthScreen.Peoples) },
+                OutlinedButton(onClick = { navController.navigate(AuthScreen.Peoples.route) },
                     colors = ButtonColors(Color.White, Color.Black, Color.Black, Color.White),
                     shape = RoundedCornerShape(18.dp),
                     modifier= modifier

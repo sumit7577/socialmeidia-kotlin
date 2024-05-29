@@ -144,7 +144,7 @@ fun Password(modifier: Modifier = Modifier,navController: NavController){
             Column(modifier=modifier.fillMaxHeight(),
                 verticalArrangement = Arrangement.Bottom) {
 
-                ElevatedButton(onClick = { navController.navigate(AuthScreen.SetProfilePicture) },
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.SetProfilePicture.route) },
                     colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
                     shape = RoundedCornerShape(18.dp),
                     modifier= modifier

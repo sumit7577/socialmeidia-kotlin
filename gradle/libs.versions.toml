@@ -16,7 +16,7 @@ androidx-core-splashscreen = "1.0.1"
 androidx-corektx = "1.13.1"
 androidx-glance = "1.0.0"
 androidx-lifecycle = "2.7.0"
-androidx-navigation = "2.8.0-alpha08"
+androidx-navigation = "2.7.7"
 serialization = "1.6.3"
 androidx-palette = "1.0.0"
 androidx-test = "1.5.0"
@@ -115,8 +115,6 @@ androidx-lifecycle-viewModelCompose = { module = "androidx.lifecycle:lifecycle-v
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
 androidx-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
-navigation-kotlinx-serialization-json = {module= "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization"}
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 androidx-palette = { module = "androidx.palette:palette", version.ref = "androidx-palette" }
@@ -183,7 +181,6 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 gradle-versions = { id = "com.github.ben-manes.versions", version.ref = "gradle-versions" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

@@ -111,7 +111,7 @@ fun Otp(modifier: Modifier = Modifier,navController: NavController){
 
             Column(modifier=modifier.fillMaxHeight(),
                 verticalArrangement = Arrangement.Bottom) {
-                ElevatedButton(onClick = { navController.navigate(AuthScreen.SetPassword) },
+                ElevatedButton(onClick = { navController.navigate(AuthScreen.SetPassword.route) },
                     colors = ButtonColors(Color.Black, Color.White, Color.White, Color.Black),
                     shape = RoundedCornerShape(18.dp),
                     modifier= modifier
